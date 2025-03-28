@@ -19,6 +19,22 @@
     </div>
 </div>
 
+<div class="chat-wrapper">
+    <div class="chat-container">
+        {% for chat in chats %}
+            {% if chat.user == request.user %}
+                <div class="chat-message user-message">
+                    <p>{{ chat.message }}</p>
+                </div>
+            {% else %}
+                <div class="chat-message bot-message">
+                    <p>{{ chat.response }}</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+    
 
 
 
