@@ -1,1 +1,36 @@
 {% extends 'base.html' %}
+{% load static %}
+
+
+{% block css-links %}
+<link rel="stylesheet" href="{% static 'css/chatbot.css' %}">
+{% endblock %}
+
+{% block body %}
+
+<div class="chat-wrapper">
+    <div class="chat-container">
+        <div class="chat-message user-message">
+            <p>Hey, what's the weather like?</p>
+        </div>
+        <div class="chat-message bot-message">
+            <p>It's sunny and 25°C today!</p>
+        </div>
+    </div>
+</div>
+
+
+
+
+<form class="message-form">
+    {% csrf_token %}
+    <div class="input-group">
+        <input type="text" class="input-query" placeholder="Ask Anything">
+        <button type="submit" class="submit-query-button">
+            <i class="fa-solid fa-arrow-up send-img" alt="send"></i>
+        </button>
+    </div>
+</form>
+
+
+{% endblock %}

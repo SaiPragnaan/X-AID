@@ -10,6 +10,7 @@
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block css-links %}{% endblock %}
 </head>
 
 <body>
@@ -60,18 +61,7 @@
 
     </header>
 
-
-
-    <form class="message-form">
-        {% csrf_token %}
-        <div class="input-group">
-            <input type="text" class="input-query" placeholder="Ask Anything">
-            <button type="submit" class="submit-query-button">
-                <i class="fa-solid fa-arrow-up send-img" alt="send" ></i>
-            </button>
-        </div>
-    </form>
-
+    {% block body %}{% endblock %}
 
     <footer>
         <div class="footer-warning">
@@ -80,7 +70,6 @@
     </footer>
 
 
-    {% block content %}{% endblock %}
     <script src="{% static 'js/base.js' %}" defer></script>
     {% block scripts %}{% endblock %}
 
