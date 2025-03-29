@@ -1,52 +1,92 @@
 body.dark .user-message {
-    background-color: #00BFA6;
+    background-color: #00B8D4;
     color: #121212;
 }
+
 body.dark .bot-message {
     background-color: #252B36;
     color: #EAEAEA;
 }
+
+body.dark .input-group {
+    border: 1px solid #3a3b3c;
+    border-radius: 15px;
+    background-color: #1f1f1f;
+}
+
+body.dark .input-query {
+    background-color: #1f1f1f;
+    color: #eaeaea;
+    font-size: 1rem;
+}
+
+body.dark .input-query::placeholder {
+    color: #8a8d91;
+}
+
+body.dark .submit-query-button {
+    background-color: #252b36;
+}
+
+body.dark .send-img {
+    color: #66d9ef;
+}
+
+
+.highlight {
+    background-color: #FFB300;
+    color: black;
+}
+
 
 /***                                CHAT-MESSAGES                                ***/
 .chat-wrapper {
     display: flex;
     justify-content: center;
     width: 100%;
+    height: 100%;
     padding-bottom: 7vh;
 }
+
 .chat-container {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 0.65rem;
     width: 40%;
-    max-height: 65vh;
+    max-height: 80%;
     overflow-y: auto;
     padding: 15px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
+
+.chat-container::-webkit-scrollbar {
+    display: none;
+}
+
 .chat-message {
-    width: 75%;
-    padding: 12px;
-    border-radius: 15px;
-    font-size: 1rem;
+    padding: 0.8rem;
+    font-size: 0.9rem;
     line-height: 1.4;
     word-wrap: break-word;
 }
-.user-message {
-    align-self: flex-end;
-    border-radius: 15px 15px 0 15px;
+
+.chat-message p {
+    margin: 0.5rem;
 }
+
+.user-message {
+    width: 48%;
+    align-self: flex-end;
+    border-radius: 20px 5px 20px 20px;
+}
+
 .bot-message {
+    width: 60%;
     align-self: flex-start;
     background-color: #e5e5e5;
     color: black;
     border-radius: 15px 15px 15px 0;
-}
-.chat-container::-webkit-scrollbar {
-    width: 5px;
-}
-.chat-container::-webkit-scrollbar-thumb {
-    background-color: #888;
-    border-radius: 10px;
 }
 
 /***                                QUERY-INPUT                                ***/
@@ -60,23 +100,26 @@ body.dark .bot-message {
     align-items: center;
     justify-content: center;
     margin-bottom: 2.5vh;
+    margin-top: 0.5vh;
+    border: none;
 }
 
 .input-group {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 34%;
+    width: 36%;
     height: 5.5vh;
     transition: width 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .input-query {
     width: 100%;
-    height: 100%;
+    height: 95%;
     border: none;
     border-radius: 15px 0px 0px 15px;
     padding-left: 1.75rem;
+
 }
 
 .input-query::placeholder {
@@ -88,7 +131,7 @@ body.dark .bot-message {
 }
 
 .input-group:has(.input-query:focus) {
-    width: 36%;
+    width: 40%;
     box-shadow: 0 0 3px rgba(0, 150, 255, 0.5);
 }
 
@@ -107,4 +150,5 @@ body.dark .bot-message {
 
 .send-img {
     font-size: 1.75rem;
+    /* border: none; */
 }

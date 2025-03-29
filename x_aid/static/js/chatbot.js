@@ -30,7 +30,7 @@ messageForm.addEventListener("submit", (evt) => {
             },
             body: JSON.stringify({ message: message }),
         });
-        console.log(reponse)
+        console.log(reponse);
         data = await reponse.json();
         const reply = data.reply;
         const messageItem = document.createElement("div");
@@ -40,5 +40,6 @@ messageForm.addEventListener("submit", (evt) => {
         `;
         messageList.appendChild(messageItem);
     };
-    getFacts(); 
+    getFacts();
 });
+

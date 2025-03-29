@@ -5,18 +5,17 @@
 <div class="chat-wrapper">
     <div class="chat-container">
         <div class="chat-message user-message">
-            <p>Hey, what's the weather like?</p>
+            <p class="message-content">Hey, what's the weather like?</p>
         </div>
         <div class="chat-message bot-message">
-            <p>It's sunny and 25°C today!</p>
+            <p class="message-content">It's sunny and 25°C today!</p>
         </div>
         {% for chat in chats %} {% if chat.user == request.user %}
         <div class="chat-message user-message">
-            <p>{{ chat.message }}</p>
+            <p class="message-content">{{ chat.message }}</p>
         </div>
-        {% else %}
         <div class="chat-message bot-message">
-            <p>{{ chat.response }}</p>
+            <p class="message-content">{{ chat.response }}</p>
         </div>
         {% endif %} {% endfor %}
     </div>
