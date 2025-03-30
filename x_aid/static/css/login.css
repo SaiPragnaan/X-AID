@@ -7,24 +7,29 @@
     height: 40%;
     width: 20%;
 } */
-body.dark .login-container{
+body.dark .login-container {
     background-color: #121212;
 }
-body.dark .card-header{
+
+body.dark .card-header {
     color: #A0A0A0;
 }
-body.dark label{
+
+body.dark label {
     color: #E1E1E1;
 }
-body.dark .form-control{
+
+body.dark .form-control {
     background-color: #2D2F36;
     color: #E1E1E1;
 }
-body.dark .login-button{
+
+body.dark .login-button {
     background-color: #4CB9D1;
     color: #FFFFFF;
 }
-body.dark .login-button:hover{
+
+body.dark .login-button:hover {
     background-color: #45A049;
 }
 
@@ -36,43 +41,54 @@ body.dark .login-button:hover{
 }
 
 .card {
+    width: 20vw; ;
+    min-width: 320px; /* Prevents it from becoming too small */
+    min-height: 50vh;
     padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    box-shadow: 0 0 1rem rgba(255, 255, 255, 0.15);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .card-header {
     font-size: 1.5rem;
     font-weight: bold;
     text-align: center;
+    margin-bottom: 2rem;
 }
 
 .form-group {
     margin-bottom: 1rem;
+    margin-top: 1rem;
 }
-
+label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: block;
+    font-size: 1rem;
+}
 input {
     width: 100%;
-    padding: 10px;
+    padding: 0.75rem;
     border: none;
     border-radius: 5px;
     font-size: 1rem;
-}
-input:focus{
-    outline: none;
-}
-button {
-    width: 100%;
-    padding: 10px;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
 }
 
-button:hover {
-    background: #0056b3;
+input:focus {
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .alert {
@@ -80,3 +96,4 @@ button:hover {
     text-align: center;
     margin-bottom: 1rem;
 }
+
