@@ -17,11 +17,12 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from chatbot_app.views import chatbot,disease_prediction,logout,login
+from chatbot_app.views import chatbot,disease_prediction,logout,login,register
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("chatbot/",chatbot,name="chatbot"),
     path("prediction/",disease_prediction,name="prediction"),
     path("login/",login,name="login"),
+    path("register/",register,name="register"),
     path("logout/",logout,name="logout"),
 ]
