@@ -1,45 +1,134 @@
-console.log("hi");
-
 const messageList = document.querySelector(".chat-container");
 const messageForm = document.querySelector(".message-form");
 const messageInput = document.querySelector(".input-query");
+const imageInput = document.querySelector("#image-upload");
 
 messageForm.addEventListener("submit", (evt) => {
+    // evt.preventDefault();
+    // const message = messageInput.value.trim();
+
+    // if (message.length === 0 && !imageInput.files.length) {
+    //     return;
+    // }
+    // const messageItem = document.createElement("div");
+    // messageItem.classList.add("chat-message", "user-message");
+    // messageItem.innerHTML = `
+    //     <p>${message}</p>
+    // `;
+    // messageList.appendChild(messageItem);
+    // messageInput.value = "";
+
+    // const getFacts = async () => {
+    //     let reponse = await fetch("/chatbot/", {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             "X-CSRFToken": document.querySelector(
+    //                 "[name=csrfmiddlewaretoken]"
+    //             ).value,
+    //         },
+    //         body: JSON.stringify({ message: message }),
+    //     });
+    //     console.log(reponse);
+    //     data = await reponse.json();
+    //     const reply = data.reply;
+    //     const messageItem = document.createElement("div");
+    //     messageItem.classList.add("chat-message", "bot-message");
+    //     messageItem.innerHTML = `
+    //         <p>${reply}</p>
+    //     `;
+    //     messageList.appendChild(messageItem);
+    // };
+    // getFacts();
+
     evt.preventDefault();
+
     const message = messageInput.value.trim();
-    // console.log(message)
-    if (message.length == 0) {
+    // if (imageInput.files.length > 0) {
+    //     const imageFile = imageInput.files[0];
+    // }
+    // else{
+    //     const imageFile=null;
+    //
+    const imageFile = imageInput.files.length > 0 ? imageInput.files[0] : null;
+    if (message.length === 0 && !imageFile) {
         return;
     }
-    const messageItem = document.createElement("div");
-    messageItem.classList.add("chat-message", "user-message");
-    messageItem.innerHTML = `
-        <p>${message}</p>
-    `;
-    messageList.appendChild(messageItem);
-    messageInput.value = "";
 
-    const getFacts = async () => {
-        let reponse = await fetch("/chatbot/", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRFToken": document.querySelector(
-                    "[name=csrfmiddlewaretoken]"
-                ).value,
-            },
-            body: JSON.stringify({ message: message }),
-        });
-        console.log(reponse);
-        data = await reponse.json();
-        const reply = data.reply;
-        const messageItem = document.createElement("div");
-        messageItem.classList.add("chat-message", "bot-message");
-        messageItem.innerHTML = `
-            <p>${reply}</p>
-        `;
-        messageList.appendChild(messageItem);
-    };
-    getFacts();
+    if (message.length > 0) {
+        appendUserMessage(message);
+        sendMessageToServer(message);
+    }
+
+    if (imageFile) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            appendUserImage(e.target.result);
+            sendImageToServer(imageFile);
+        };
+        reader.readAsDataURL(imageFile);
+    }
+
+    messageInput.value = "";
+    imageInput.value = "";
 });
 
+appendUserMessage = (message) => {
+    const messageItem = document.createElement("div");
+    messageItem.classList.add("chat-message", "user-message");
+    messageItem.innerHTML = `<p>${message}</p>`;
+    messageList.appendChild(messageItem);
+};
+
+appendUserImage = (imageSrc) => {
+    const messageItem = document.createElement("div");
+    messageItem.classList.add("chat-message", "user-message");
+    messageItem.innerHTML = `<img src="${imageSrc}" class="message-image" alt="User Image"/>`;
+    messageList.appendChild(messageItem);
+};
+
+appendBotMessage = (reply) => {
+    const messageItem = document.createElement("div");
+    messageItem.classList.add("chat-message", "bot-message");
+    messageItem.innerHTML = `<p>${reply}</p>`;
+    messageList.appendChild(messageItem);
+};
+
+sendMessageToServer = async (message) => {
+    let response = await fetch("/chatbot/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]")
+                .value,
+        },
+        body: JSON.stringify({ message: message }),
+    });
+
+    let replyData = await response.json();
+    if (replyData.reply) {
+        appendBotMessage(replyData.reply);
+    }
+};
+
+// sendImageToServer = async (file) => {
+//     const formData = new FormData();
+//     formData.append("image", file);
+//     formData.append(
+//         "csrfmiddlewaretoken",
+//         document.querySelector("[name=csrfmiddlewaretoken]").value
+//     );
+
+//     let response = await fetch("/chatbot/", {
+//         method: "POST",
+//         body: formData,
+//     });
+
+//     let replyData = await response.json();
+//     if (replyData.bot_reply) {
+//         appendBotMessage(replyData.bot_reply);
+//     }
+//     if (responseData.bot_image) {
+//         appendBotImage(replyData.bot_image);
+//     }
+// };

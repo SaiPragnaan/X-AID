@@ -65,4 +65,3 @@ def register(request):
 def logout(request):
     auth.logout(request)
     return redirect("chatbot/")
-    return render(request,"",{})

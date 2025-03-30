@@ -32,12 +32,18 @@ body.dark .send-img {
     color: #66d9ef;
 }
 
+body.dark .upload-icon {
+    color: #8a8d91;
+}
+
+body.dark .upload-icon:hover {
+    color: #66d9ef;
+}
 
 .highlight {
     background-color: #FFB300;
     color: black;
 }
-
 
 /***                                CHAT-MESSAGES                                ***/
 .chat-wrapper {
@@ -111,6 +117,12 @@ body.dark .send-img {
     width: 36%;
     height: 5.5vh;
     transition: width 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    padding-left: 0.5rem;
+}
+
+.input-group:has(.input-query:focus) {
+    width: 40%;
+    box-shadow: 0 0 3px rgba(0, 150, 255, 0.5);
 }
 
 .input-query {
@@ -119,7 +131,6 @@ body.dark .send-img {
     border: none;
     border-radius: 15px 0px 0px 15px;
     padding-left: 1.75rem;
-
 }
 
 .input-query::placeholder {
@@ -128,11 +139,6 @@ body.dark .send-img {
 
 .input-query:focus {
     outline: none;
-}
-
-.input-group:has(.input-query:focus) {
-    width: 40%;
-    box-shadow: 0 0 3px rgba(0, 150, 255, 0.5);
 }
 
 .submit-query-button {
@@ -150,5 +156,30 @@ body.dark .send-img {
 
 .send-img {
     font-size: 1.75rem;
-    /* border: none; */
+}
+
+/***                                IMAGE UPLOAD                                ***/
+
+.upload-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    cursor: pointer;
+    color: #8a8d91;
+    font-size: 1.2rem;
+    transition: color 0.3s ease-in-out;
+    margin-right: 0.75rem;
+}
+
+.upload-icon:hover {
+    color: #66d9ef;
+}
+
+.input-group .upload-icon {
+    order: -1; 
+}
+
+.image-input {
+    display: none;
 }

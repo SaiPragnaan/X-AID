@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="{% static 'css/chatbot.css' %}" />
 {% endblock %} {% block body %}
 
-<div class="chat-wrapper">
+<!-- <div class="chat-wrapper">
     <div class="chat-container">
         {% for chat in chats %}
         {% if chat.user == request.user %}
@@ -15,12 +15,54 @@
         {% endif %}
         {% endfor %}
     </div>
+</div> -->
+<div class="chat-wrapper">
+    <div class="chat-container">
+        {% for chat in chats %} {% if chat.user == request.user %}
+        <div class="chat-message user-message">
+            {% if chat.message %}
+            <p class="message-content">{{ chat.message }}</p>
+            {% endif %} {% if chat.image %}
+            <img
+                src="{{ chat.image.url }}"
+                class="message-image"
+                alt="User Uploaded Image"
+            />
+            {% endif %}
+        </div>
+        <div class="chat-message bot-message">
+            {% if chat.response %}
+            <p class="message-content">{{ chat.response }}</p>
+            {% endif %} {% if chat.bot_image %}
+            <img
+                src="{{ chat.bot_image.url }}"
+                class="message-image"
+                alt="Bot Response Image"
+            />
+            {% endif %}
+        </div>
+        {% endif %} {% endfor %}
+    </div>
 </div>
 
 <form class="message-form">
     {% csrf_token %}
     <div class="input-group">
-        <input type="text" class="input-query" placeholder="Ask Anything" />
+        <label for="image-upload" class="upload-icon">
+            <i class="fa-solid fa-image"></i>
+        </label>
+        <input
+            type="file"
+            id="image-upload"
+            class="image-input"
+            accept="image/*"
+            hidden
+        />
+        <input
+            type="text"
+            class="input-query"
+            placeholder="Ask Anything or Upload an X-Ray"
+        />
         <button type="submit" class="submit-query-button">
             <i class="fa-solid fa-arrow-up send-img" alt="send"></i>
         </button>
