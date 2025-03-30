@@ -1,0 +1,82 @@
+/* 
+.card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid red;
+    height: 40%;
+    width: 20%;
+} */
+body.dark .login-container{
+    background-color: #121212;
+}
+body.dark .card-header{
+    color: #A0A0A0;
+}
+body.dark label{
+    color: #E1E1E1;
+}
+body.dark .form-control{
+    background-color: #2D2F36;
+    color: #E1E1E1;
+}
+body.dark .login-button{
+    background-color: #4CB9D1;
+    color: #FFFFFF;
+}
+body.dark .login-button:hover{
+    background-color: #45A049;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.card {
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.card-header {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+input:focus{
+    outline: none;
+}
+button {
+    width: 100%;
+    padding: 10px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+.alert {
+    color: red;
+    text-align: center;
+    margin-bottom: 1rem;
+}
