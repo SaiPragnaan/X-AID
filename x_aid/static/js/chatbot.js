@@ -76,21 +76,28 @@ messageForm.addEventListener("submit", (evt) => {
 appendUserMessage = (message) => {
     const messageItem = document.createElement("div");
     messageItem.classList.add("chat-message", "user-message");
-    messageItem.innerHTML = `<p>${message}</p>`;
+    messageItem.innerHTML = `<p  class="message-content">${message}</p>`;
     messageList.appendChild(messageItem);
 };
 
 appendUserImage = (imageSrc) => {
     const messageItem = document.createElement("div");
     messageItem.classList.add("chat-message", "user-message");
-    messageItem.innerHTML = `<img src="${imageSrc}" class="message-image" alt="User Image"/>`;
+    messageItem.innerHTML = `<img src="${imageSrc}" class="message-image user-image" alt="User Image"/>`;
     messageList.appendChild(messageItem);
 };
 
 appendBotMessage = (reply) => {
     const messageItem = document.createElement("div");
     messageItem.classList.add("chat-message", "bot-message");
-    messageItem.innerHTML = `<p>${reply}</p>`;
+    messageItem.innerHTML = `<p class="message-content">${reply}</p>`;
+    messageList.appendChild(messageItem);
+};
+
+appendBotImage = (imageSrc) => {
+    const messageItem = document.createElement("div");
+    messageItem.classList.add("chat-message", "bot-message");
+    messageItem.innerHTML = `<img src="${imageSrc}" class="message-image bot-image" alt="Bot Image"/>`;
     messageList.appendChild(messageItem);
 };
 
@@ -111,24 +118,24 @@ sendMessageToServer = async (message) => {
     }
 };
 
-// sendImageToServer = async (file) => {
-//     const formData = new FormData();
-//     formData.append("image", file);
-//     formData.append(
-//         "csrfmiddlewaretoken",
-//         document.querySelector("[name=csrfmiddlewaretoken]").value
-//     );
+sendImageToServer = async (file) => {
+    const formData = new FormData();
+    formData.append("image", file);
+    formData.append(
+        "csrfmiddlewaretoken",
+        document.querySelector("[name=csrfmiddlewaretoken]").value
+    );
 
-//     let response = await fetch("/chatbot/", {
-//         method: "POST",
-//         body: formData,
-//     });
+    let response = await fetch("/chatbot/", {
+        method: "POST",
+        body: formData,
+    });
 
-//     let replyData = await response.json();
-//     if (replyData.bot_reply) {
-//         appendBotMessage(replyData.bot_reply);
-//     }
-//     if (responseData.bot_image) {
-//         appendBotImage(replyData.bot_image);
-//     }
-// };
+    let replyData = await response.json();
+    if (replyData.bot_reply) {
+        appendBotMessage(replyData.bot_reply);
+    }
+    if (replyData.bot_image) {
+        appendBotImage(replyData.bot_image);
+    }
+};
