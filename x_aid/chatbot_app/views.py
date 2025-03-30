@@ -8,16 +8,33 @@ import os
 
 from django.utils import timezone
 # Create your views here.
+
 def chatbot(request):
     chats=Chat.objects.filter(user=request.user)
     if request.method=="POST":
-        data=json.loads(request.body)
-        message=data.get("message")
-        reply=f"You said: {message}"
-        chat=Chat(user=request.user,message=message,response=reply,created_at=timezone.now())
-        chat.save()
-        return JsonResponse({"message":message,"reply": reply})
-    # return render(request,"chatbot_app/chatbot.html",{'chats':chats})
+        if request.FILES.get("image"):
+            image = request.FILES["image"]
+            chat = Chat(user=request.user, image=image, created_at=timezone.now())
+            chat.save()
+
+            bot_reply = "I received your image. Processing..."
+            bot_image = None  
+
+            return JsonResponse({
+                "bot_reply": bot_reply,
+                "bot_image": bot_image.url if bot_image else None
+            })
+
+        elif request.body:
+            data = json.loads(request.body)
+            message = data.get("message")
+            reply = f"You said: {message}"
+            
+            chat = Chat(user=request.user, message=message, response=reply, created_at=timezone.now())
+            chat.save()
+
+            return JsonResponse({"message": message, "reply": reply})
+    
     return render(request,"chatbot_app/chatbot.html",{'chats':chats})
 
 def disease_prediction(request):
