@@ -2,20 +2,6 @@
 <link rel="stylesheet" href="{% static 'css/chatbot.css' %}" />
 {% endblock %} {% block body %}
 
-<!-- <div class="chat-wrapper">
-    <div class="chat-container">
-        {% for chat in chats %}
-        {% if chat.user == request.user %}
-        <div class="chat-message user-message">
-            <p class="message-content">{{ chat.message }}</p>
-        </div>
-        <div class="chat-message bot-message">
-            <p class="message-content">{{ chat.response }}</p>
-        </div>
-        {% endif %}
-        {% endfor %}
-    </div>
-</div> -->
 <div class="chat-wrapper">
     <div class="chat-container">
         {% for chat in chats %}

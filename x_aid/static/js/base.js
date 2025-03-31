@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             modeBtn.setAttribute("class", "fa-solid fa-moon");
         }
+        // modeBtn.classList.remove("fa-solid fa-circle-half-stroke", "fa-solid fa-moon");
         body.classList.remove("dark", "light");
         body.classList.add(currMode);
         localStorage.setItem("theme", currMode);

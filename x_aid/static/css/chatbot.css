@@ -40,10 +40,58 @@ body.dark .upload-icon:hover {
     color: #66d9ef;
 }
 
+body.light .user-message {
+    background-color: #007BA7; /* Deep Cyan */
+    color: white;
+}
+
+body.light .bot-message {
+    background-color: #F8F9FA; /* Light Gray */
+    color: #121212;
+}
+
+body.light .input-group {
+    border: 1px solid #CED4DA; /* Subtle Gray */
+    border-radius: 15px;
+    background-color: #FFFFFF;
+}
+
+body.light .input-query {
+    background-color: #FFFFFF;
+    color: #343A40; /* Dark Gray */
+    font-size: 1rem;
+}
+
+body.light .input-query::placeholder {
+    color: #6C757D; /* Medium Gray */
+}
+
+body.light .submit-query-button {
+    background-color: #E3F2FD; /* Soft Blue */
+}
+
+body.light .send-img {
+    color: #007BA7; /* Deep Cyan */
+}
+
+body.light .upload-icon {
+    color: #6C757D; /* Medium Gray */
+}
+
+body.light .upload-icon:hover {
+    color: #007BA7;
+}
+
+/* body.light .highlight {
+    background-color: #FFA726; 
+    color: black;
+} */
+
+/* 
 .highlight {
     background-color: #FFB300;
     color: black;
-}
+} */
 
 /***                                CHAT-MESSAGES                                ***/
 .chat-wrapper {
@@ -90,8 +138,6 @@ body.dark .upload-icon:hover {
 .bot-message {
     width: 60%;
     align-self: flex-start;
-    background-color: #e5e5e5;
-    color: black;
     border-radius: 15px 15px 15px 0;
 }
 
@@ -183,4 +229,7 @@ body.dark .upload-icon:hover {
 .image-input {
     display: none;
 }
+
+
+/* IMAGE CONTAINER */
 
