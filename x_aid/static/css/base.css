@@ -54,6 +54,63 @@ body.dark #web-logo {
     color: #66d9ef;
 }
 
+body.light {
+    background-color: #F8F9FA; /* Soft White */
+    color: #212529; /* Deep Charcoal */
+}
+
+/* Navbar */
+body.light .navbar {
+    background-color: #F1F3F5; /* Soft Grayish White */
+    color: #343A40; /* Dark Gray */
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.08); /* Soft Separation */
+}
+
+body.light .navbar a {
+    color: #343A40; /* Charcoal */
+}
+
+body.light .navbar a:hover {
+    color: #007BFF; /* Bright Blue */
+}
+
+/* Website Logo */
+body.light #web-logo {
+    color: #007BFF; /* Bright Blue */
+}
+
+/* Footer */
+body.light footer {
+    color: #6C757D; /* Muted Gray */
+}
+
+/* Search Bar */
+body.light .nav-search {
+    border: 1px solid #CED4DA; /* Subtle Gray */
+    border-radius: 20px;
+    background-color: #FFFFFF; /* Soft White */
+}
+
+body.light .search-input {
+    background-color: transparent;
+    color: #212529; /* Deep Charcoal */
+}
+
+body.light .search-input::placeholder {
+    color: #6C757D; /* Muted Gray */
+}
+
+/* Search Icon */
+body.light .search-icon {
+    background-color: #E9ECEF; /* Soft Gray */
+}
+
+body.light .search-icon i {
+    color: #495057; /* Dark Gray */
+}
+
+
+
 
 /**                      HEADER                            **/
 

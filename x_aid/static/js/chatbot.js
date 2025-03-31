@@ -4,52 +4,9 @@ const messageInput = document.querySelector(".input-query");
 const imageInput = document.querySelector("#image-upload");
 
 messageForm.addEventListener("submit", (evt) => {
-    // evt.preventDefault();
-    // const message = messageInput.value.trim();
-
-    // if (message.length === 0 && !imageInput.files.length) {
-    //     return;
-    // }
-    // const messageItem = document.createElement("div");
-    // messageItem.classList.add("chat-message", "user-message");
-    // messageItem.innerHTML = `
-    //     <p>${message}</p>
-    // `;
-    // messageList.appendChild(messageItem);
-    // messageInput.value = "";
-
-    // const getFacts = async () => {
-    //     let reponse = await fetch("/chatbot/", {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             "X-CSRFToken": document.querySelector(
-    //                 "[name=csrfmiddlewaretoken]"
-    //             ).value,
-    //         },
-    //         body: JSON.stringify({ message: message }),
-    //     });
-    //     console.log(reponse);
-    //     data = await reponse.json();
-    //     const reply = data.reply;
-    //     const messageItem = document.createElement("div");
-    //     messageItem.classList.add("chat-message", "bot-message");
-    //     messageItem.innerHTML = `
-    //         <p>${reply}</p>
-    //     `;
-    //     messageList.appendChild(messageItem);
-    // };
-    // getFacts();
-
     evt.preventDefault();
 
     const message = messageInput.value.trim();
-    // if (imageInput.files.length > 0) {
-    //     const imageFile = imageInput.files[0];
-    // }
-    // else{
-    //     const imageFile=null;
-    //
     const imageFile = imageInput.files.length > 0 ? imageInput.files[0] : null;
     if (message.length === 0 && !imageFile) {
         return;
@@ -61,8 +18,10 @@ messageForm.addEventListener("submit", (evt) => {
     }
 
     if (imageFile) {
+        console.log("hi1")
         const reader = new FileReader();
         reader.onload = (e) => {
+            console.log("hi2")
             appendUserImage(e.target.result);
             sendImageToServer(imageFile);
         };
@@ -81,6 +40,7 @@ appendUserMessage = (message) => {
 };
 
 appendUserImage = (imageSrc) => {
+    console.log("hi3")
     const messageItem = document.createElement("div");
     messageItem.classList.add("chat-message", "user-message");
     messageItem.innerHTML = `<img src="${imageSrc}" class="message-image user-image" alt="User Image"/>`;
@@ -107,11 +67,11 @@ sendMessageToServer = async (message) => {
         headers: {
             "Content-Type": "application/json",
             "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]")
-                .value,
+            .value,
         },
         body: JSON.stringify({ message: message }),
     });
-
+    
     let replyData = await response.json();
     if (replyData.reply) {
         appendBotMessage(replyData.reply);
@@ -119,6 +79,7 @@ sendMessageToServer = async (message) => {
 };
 
 sendImageToServer = async (file) => {
+    console.log("hi4")
     const formData = new FormData();
     formData.append("image", file);
     formData.append(

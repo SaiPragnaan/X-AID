@@ -23,22 +23,24 @@
                 <div class="chat-message user-message">
                     {% if chat.message %}
                     <p class="message-content">{{ chat.message }}</p>
-                    {% endif %} 
+                    <!-- {% endif %}  -->
 
-                    {% if chat.image %}
-                    <img src="{{ chat.image.url }}" class="message-image user-image" alt="User Uploaded Image" />
+                    <!-- {% if chat.image %} -->
+                    {% else %}
+                    <img src="{{ chat.image.url }}" class="message-image user-image" alt="" />
                     {% endif %}
 
                 </div>
                 <div class="chat-message bot-message">
                     {% if chat.response %}
                     <p class="message-content">{{ chat.response }}</p>
+                    <!-- {% endif %} -->
+
+                    <!-- {% if chat.bot_image %} -->
+                    {% else %}
+                    <img src="{{ chat.bot_image.url }}" class="message-image bot-image" alt="" />
                     {% endif %}
 
-                    {% if chat.bot_image %}
-                    <img src="{{ chat.bot_image.url }}" class="message-image bot-image" alt="Bot Response Image" />
-                    {% endif %}
-                    
                 </div>
             {% endif %} 
         {% endfor %}
