@@ -14,7 +14,7 @@ db.sqlite3
 pinecone_cache/
 vector_store/
 
-
+*.egg-info/
 .idea/
 
 .env
