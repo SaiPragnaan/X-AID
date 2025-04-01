@@ -9,5 +9,12 @@ db.sqlite3
 **/migrations/*.py
 !**/migrations/__init__.py
 
+.ipynb_checkpoints/
+*.py[cod]
+pinecone_cache/
+vector_store/
+
+
+.idea/
 
 .env
