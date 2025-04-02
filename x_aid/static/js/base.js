@@ -37,20 +37,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     searchInput.addEventListener("input", function () {
         const query = searchInput.value.toLowerCase().trim();
-
+        // console.log("hehe");
         chatMessages.forEach((message) => {
             let text = message.textContent;
             let lowerText = text.toLowerCase();
-
+            // console.log("haha");
             if (query.length > 0 && lowerText.includes(query)) {
-                // Replace matching text with a highlighted span
                 let highlightedText = text.replace(
                     new RegExp(query, "gi"),
                     (match) => `<span class="highlight">${match}</span>`
                 );
                 message.innerHTML = highlightedText;
             } else {
-                // Reset to original text if query is empty
                 message.innerHTML = text;
             }
         });

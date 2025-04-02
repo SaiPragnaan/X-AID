@@ -16,5 +16,6 @@ vector_store/
 
 *.egg-info/
 .idea/
+.vscode/
 
 .env

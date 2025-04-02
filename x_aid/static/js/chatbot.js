@@ -3,6 +3,16 @@ const messageForm = document.querySelector(".message-form");
 const messageInput = document.querySelector(".input-query");
 const imageInput = document.querySelector("#image-upload");
 
+const scrollToBottom = () => {
+    let chatContainer = document.querySelector(".chat-container");
+    if (!chatContainer) return;
+
+    chatContainer.scrollTo({
+        top: chatContainer.scrollHeight,
+        behavior: "smooth",
+    });
+};
+
 messageForm.addEventListener("submit", (evt) => {
     evt.preventDefault();
 
@@ -18,10 +28,10 @@ messageForm.addEventListener("submit", (evt) => {
     }
 
     if (imageFile) {
-        console.log("hi1")
+        console.log("hi1");
         const reader = new FileReader();
         reader.onload = (e) => {
-            console.log("hi2")
+            console.log("hi2");
             appendUserImage(e.target.result);
             sendImageToServer(imageFile);
         };
@@ -37,14 +47,16 @@ appendUserMessage = (message) => {
     messageItem.classList.add("chat-message", "user-message");
     messageItem.innerHTML = `<p  class="message-content">${message}</p>`;
     messageList.appendChild(messageItem);
+    setTimeout(scrollToBottom, 100);
 };
 
 appendUserImage = (imageSrc) => {
-    console.log("hi3")
+    console.log("hi3");
     const messageItem = document.createElement("div");
     messageItem.classList.add("chat-message", "user-message");
     messageItem.innerHTML = `<img src="${imageSrc}" class="message-image user-image" alt="User Image"/>`;
     messageList.appendChild(messageItem);
+    setTimeout(scrollToBottom, 100);
 };
 
 appendBotMessage = (reply) => {
@@ -52,6 +64,7 @@ appendBotMessage = (reply) => {
     messageItem.classList.add("chat-message", "bot-message");
     messageItem.innerHTML = `<p class="message-content">${reply}</p>`;
     messageList.appendChild(messageItem);
+    setTimeout(scrollToBottom, 100);
 };
 
 appendBotImage = (imageSrc) => {
@@ -59,6 +72,7 @@ appendBotImage = (imageSrc) => {
     messageItem.classList.add("chat-message", "bot-message");
     messageItem.innerHTML = `<img src="${imageSrc}" class="message-image bot-image" alt="Bot Image"/>`;
     messageList.appendChild(messageItem);
+    setTimeout(scrollToBottom, 100);
 };
 
 sendMessageToServer = async (message) => {
@@ -67,11 +81,11 @@ sendMessageToServer = async (message) => {
         headers: {
             "Content-Type": "application/json",
             "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]")
-            .value,
+                .value,
         },
         body: JSON.stringify({ message: message }),
     });
-    
+
     let replyData = await response.json();
     if (replyData.reply) {
         appendBotMessage(replyData.reply);
@@ -79,7 +93,7 @@ sendMessageToServer = async (message) => {
 };
 
 sendImageToServer = async (file) => {
-    console.log("hi4")
+    console.log("hi4");
     const formData = new FormData();
     formData.append("image", file);
     formData.append(

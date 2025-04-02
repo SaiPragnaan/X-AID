@@ -6,6 +6,12 @@ from .models import Chat
 import json
 import os
 
+import sys
+sys.path.append('/home/unique/Dev/X-AID/ML/')
+
+
+from scripts.chat_generation import text_generation
+
 from django.utils import timezone
 # Create your views here.
 
@@ -27,13 +33,14 @@ def chatbot(request):
 
         elif request.body:
             data = json.loads(request.body)
-            message = data.get("message")
-            reply = f"You said: {message}"
+            query = data.get("message")
+            reply = text_generation(query)
+            # reply="processinggggggggggg"
             
-            chat = Chat(user=request.user, message=message, response=reply, created_at=timezone.now())
+            chat = Chat(user=request.user, message=query, response=reply, created_at=timezone.now())
             chat.save()
 
-            return JsonResponse({"message": message, "reply": reply})
+            return JsonResponse({"message": query, "reply": reply})
     
     return render(request,"chatbot_app/chatbot.html",{'chats':chats})
 

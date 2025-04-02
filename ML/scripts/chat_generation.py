@@ -13,7 +13,8 @@ from langchain.chains import ConversationalRetrievalChain
 from dotenv import load_dotenv
 import os
 
-load_dotenv("../../.env")
+# load_dotenv("../../.env")
+load_dotenv(os.path.join(os.path.dirname(__file__), '../../.env'))
 
 os.environ["PINECONE_ENVIRONMENT"] = "gcp-starter"
 pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
@@ -55,8 +56,23 @@ vector_store = store_chunks_in_database()
 memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
 llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash")
 
+CUSTOM_PROMPT = PromptTemplate(
+    template="""You are an AI assistant that provides direct and informative answers.
+Follow these rules:
+1. DO NOT use phrases like "Based on the given text" or "According to the text."
+2. DO NOT use bullet points, markdown, or structured formatting—respond in a natural paragraph format.
+3. Keep responses concise yet detailed.
+4. Avoid unnecessary introductions or disclaimers.
+
+Context: {context}
+Question: {question}
+Answer:""",
+    input_variables=["context", "question"],
+)
+
 chain = ConversationalRetrievalChain.from_llm(
-    llm, retriever=vector_store.as_retriever(), memory=memory
+    llm, retriever=vector_store.as_retriever(), memory=memory,
+    combine_docs_chain_kwargs={"prompt": CUSTOM_PROMPT} 
 )
 
 

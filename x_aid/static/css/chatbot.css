@@ -82,16 +82,16 @@ body.light .upload-icon:hover {
     color: #007BA7;
 }
 
-/* body.light .highlight {
+body.light .highlight {
     background-color: #FFA726; 
     color: black;
-} */
+}
 
-/* 
+
 .highlight {
     background-color: #FFB300;
     color: black;
-} */
+}
 
 /***                                CHAT-MESSAGES                                ***/
 .chat-wrapper {
@@ -106,6 +106,7 @@ body.light .upload-icon:hover {
     display: flex;
     flex-direction: column;
     gap: 0.65rem;
+    align-items: flex-start;
     width: 40%;
     max-height: 80%;
     overflow-y: auto;
