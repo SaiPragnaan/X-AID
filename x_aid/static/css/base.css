@@ -55,58 +55,53 @@ body.dark #web-logo {
 }
 
 body.light {
-    background-color: #F8F9FA; /* Soft White */
-    color: #212529; /* Deep Charcoal */
+    background-color: #F8F9FA; 
+    color: #212529;
 }
 
-/* Navbar */
 body.light .navbar {
-    background-color: #F1F3F5; /* Soft Grayish White */
-    color: #343A40; /* Dark Gray */
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.08); /* Soft Separation */
+    background-color: #F1F3F5; 
+    color: #343A40; 
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.08);
 }
 
 body.light .navbar a {
-    color: #343A40; /* Charcoal */
+    color: #343A40;
 }
 
 body.light .navbar a:hover {
-    color: #007BFF; /* Bright Blue */
+    color: #007BFF; 
 }
 
-/* Website Logo */
 body.light #web-logo {
-    color: #007BFF; /* Bright Blue */
+    color: #007BFF; 
 }
 
-/* Footer */
 body.light footer {
-    color: #6C757D; /* Muted Gray */
+    color: #6C757D;
 }
 
-/* Search Bar */
 body.light .nav-search {
-    border: 1px solid #CED4DA; /* Subtle Gray */
+    border: 1px solid #CED4DA;
     border-radius: 20px;
-    background-color: #FFFFFF; /* Soft White */
+    background-color: #FFFFFF; 
 }
 
 body.light .search-input {
     background-color: transparent;
-    color: #212529; /* Deep Charcoal */
+    color: #212529;
 }
 
 body.light .search-input::placeholder {
-    color: #6C757D; /* Muted Gray */
+    color: #6C757D;
 }
 
-/* Search Icon */
 body.light .search-icon {
-    background-color: #E9ECEF; /* Soft Gray */
+    background-color: #E9ECEF; 
 }
 
 body.light .search-icon i {
-    color: #495057; /* Dark Gray */
+    color: #495057;
 }
 
 

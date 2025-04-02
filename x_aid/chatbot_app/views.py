@@ -20,12 +20,12 @@ def chatbot(request):
     if request.method=="POST":
         if request.FILES.get("image"):
             image = request.FILES["image"]
-            chat = Chat(user=request.user, image=image, created_at=timezone.now())
-            chat.save()
 
             bot_reply = "I received your image. Processing..."
             bot_image = None  
 
+            chat = Chat(user=request.user, image=image,response=bot_reply ,bot_image=bot_image,created_at=timezone.now())
+            chat.save()
             return JsonResponse({
                 "bot_reply": bot_reply,
                 "bot_image": bot_image.url if bot_image else None

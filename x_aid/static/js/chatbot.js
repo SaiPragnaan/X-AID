@@ -2,6 +2,7 @@ const messageList = document.querySelector(".chat-container");
 const messageForm = document.querySelector(".message-form");
 const messageInput = document.querySelector(".input-query");
 const imageInput = document.querySelector("#image-upload");
+const imagePreviewContainer = document.querySelector("#image-preview");
 
 const scrollToBottom = () => {
     let chatContainer = document.querySelector(".chat-container");
@@ -11,6 +12,10 @@ const scrollToBottom = () => {
         top: chatContainer.scrollHeight,
         behavior: "smooth",
     });
+};
+
+window.onload = () => {
+    setTimeout(scrollToBottom, 200);
 };
 
 messageForm.addEventListener("submit", (evt) => {
@@ -114,3 +119,16 @@ sendImageToServer = async (file) => {
         appendBotImage(replyData.bot_image);
     }
 };
+
+imageInput.addEventListener("change", function () {
+    if (this.files && this.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            imagePreviewContainer.innerHTML = `<img src="${e.target.result}" alt="Selected Image">`;
+            imagePreviewContainer.style.display = "block";
+        };
+        reader.readAsDataURL(this.files[0]);
+    } else {
+        imagePreviewContainer.style.display = "none";
+    }
+});

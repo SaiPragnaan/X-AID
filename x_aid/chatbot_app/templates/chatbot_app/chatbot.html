@@ -4,48 +4,63 @@
 
 <div class="chat-wrapper">
     <div class="chat-container">
-        {% for chat in chats %}
-            {% if chat.user == request.user %}
-                <div class="chat-message user-message">
-                    {% if chat.message %}
-                    <p class="message-content">{{ chat.message }}</p>
-                    <!-- {% endif %}  -->
-
-                    <!-- {% if chat.image %} -->
-                    {% else %}
-                    <img src="{{ chat.image.url }}" class="message-image user-image" alt="" />
-                    {% endif %}
-
-                </div>
-                <div class="chat-message bot-message">
-                    {% if chat.response %}
-                    <p class="message-content">{{ chat.response }}</p>
-                    <!-- {% endif %} -->
-
-                    <!-- {% if chat.bot_image %} -->
-                    {% else %}
-                    <img src="{{ chat.bot_image.url }}" class="message-image bot-image" alt="" />
-                    {% endif %}
-
-                </div>
-            {% endif %} 
-        {% endfor %}
+        {% for chat in chats %} {% if chat.user == request.user %}
+        <div class="chat-message user-message">
+            {% if chat.message %}
+            <p class="message-content">{{ chat.message }}</p>
+            {% else %}
+            <img src="{{ chat.image.url }}" class="message-image user-image" alt="" />
+            {% endif %}
+        </div>
+        <div class="chat-message bot-message">
+            {% if chat.response %}
+            <p class="message-content">{{ chat.response }}</p>
+            {% endif %}
+        </div>
+        {% endif %} {% endfor %}
     </div>
 </div>
 
-<form class="message-form">
-    {% csrf_token %}
-    <div class="input-group">
-        <label for="image-upload" class="upload-icon">
-            <i class="fa-solid fa-image"></i>
-        </label>
-        <input type="file" id="image-upload" class="image-input" accept="image/*" hidden />
-        <input type="text" class="input-query" placeholder="Ask Anything or Upload an X-Ray" />
-        <button type="submit" class="submit-query-button">
-            <i class="fa-solid fa-arrow-up send-img" alt="send"></i>
-        </button>
+<!-- <div class="chat-input-container">
+    <div id="image-preview-container" class="image-preview-container" style="display: none">
+        <img id="image-preview" class="image-preview" alt="Preview" />
+        <button id="remove-image" class="remove-image">&times;</button>
     </div>
-</form>
+    <form class="message-form">
+        {% csrf_token %}
+        <div class="input-group">
+            <label for="image-upload" class="upload-icon">
+                <i class="fa-solid fa-image"></i>
+            </label>
+            <input type="file" id="image-upload" class="image-input" accept="image/*" hidden />
+            <input type="text" class="input-query" placeholder="Ask Anything or Upload an X-Ray" />
+            <button type="submit" class="submit-query-button">
+                <i class="fa-solid fa-arrow-up send-img" alt="send"></i>
+            </button>
+        </div>
+    </form>
+</div> -->
+<div class="form-preview-container">
+    <!-- Image Preview Container -->
+    <div class="image-preview" id="image-preview"></div>
+
+    <!-- Message Form -->
+    <form class="message-form">
+        {% csrf_token %}
+        <div class="input-group">
+            <label for="image-upload" class="upload-icon">
+                <i class="fa-solid fa-image"></i>
+            </label>
+            <input type="file" id="image-upload" class="image-input" accept="image/*" hidden />
+            <input type="text" class="input-query" placeholder="Ask Anything or Upload an X-Ray" />
+            <button type="submit" class="submit-query-button">
+                <i class="fa-solid fa-arrow-up send-img" alt="send"></i>
+            </button>
+        </div>
+    </form>
+</div>
+
+
 
 {% endblock %} {% block scripts %}
 <script src="{% static 'js/chatbot.js' %}"></script>

@@ -41,41 +41,41 @@ body.dark .upload-icon:hover {
 }
 
 body.light .user-message {
-    background-color: #007BA7; /* Deep Cyan */
+    background-color: #007BA7;
     color: white;
 }
 
 body.light .bot-message {
-    background-color: #F8F9FA; /* Light Gray */
+    background-color: #F8F9FA;
     color: #121212;
 }
 
 body.light .input-group {
-    border: 1px solid #CED4DA; /* Subtle Gray */
+    border: 1px solid #CED4DA;
     border-radius: 15px;
     background-color: #FFFFFF;
 }
 
 body.light .input-query {
     background-color: #FFFFFF;
-    color: #343A40; /* Dark Gray */
+    color: #343A40;
     font-size: 1rem;
 }
 
 body.light .input-query::placeholder {
-    color: #6C757D; /* Medium Gray */
+    color: #6C757D;
 }
 
 body.light .submit-query-button {
-    background-color: #E3F2FD; /* Soft Blue */
+    background-color: #E3F2FD;
 }
 
 body.light .send-img {
-    color: #007BA7; /* Deep Cyan */
+    color: #007BA7;
 }
 
 body.light .upload-icon {
-    color: #6C757D; /* Medium Gray */
+    color: #6C757D;
 }
 
 body.light .upload-icon:hover {
@@ -83,7 +83,7 @@ body.light .upload-icon:hover {
 }
 
 body.light .highlight {
-    background-color: #FFA726; 
+    background-color: #FFA726;
     color: black;
 }
 
@@ -141,6 +141,29 @@ body.light .highlight {
     align-self: flex-start;
     border-radius: 15px 15px 15px 0;
 }
+
+.message-image {
+    max-width: 100%;
+    /* Ensures the image does not overflow its container */
+    height: auto;
+    /* Keeps the aspect ratio */
+    border-radius: 10px;
+    /* Optional: adds rounded corners for images */
+    margin: 5px 0;
+}
+
+.user-message img {
+    max-width: 100%;
+    border-radius: 15px 5px 15px 15px;
+    /* Similar to user message */
+}
+
+.bot-message img {
+    max-width: 100%;
+    border-radius: 15px 15px 15px 5px;
+    /* Similar to bot message */
+}
+
 
 /***                                QUERY-INPUT                                ***/
 
@@ -205,6 +228,41 @@ body.light .highlight {
     font-size: 1.75rem;
 }
 
+.form-preview-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin-bottom: 2.5vh;
+}
+
+.image-preview {
+    width: 5rem;
+    /* Adjust preview size */
+    height: 5rem;
+    border-radius: 10px;
+    overflow: hidden;
+    display: none;
+    margin-right: 1rem;
+}
+
+.image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Adjusting form size when preview is visible */
+.form-preview-container:has(.image-preview img) .message-form {
+    width: calc(100% - 6rem);
+}
+
+
+
 /***                                IMAGE UPLOAD ICON                              ***/
 
 .upload-icon {
@@ -224,7 +282,7 @@ body.light .highlight {
 }
 
 .input-group .upload-icon {
-    order: -1; 
+    order: -1;
 }
 
 .image-input {
@@ -233,4 +291,3 @@ body.light .highlight {
 
 
 /* IMAGE CONTAINER */
-
