@@ -34,8 +34,8 @@ def chatbot(request):
         elif request.body:
             data = json.loads(request.body)
             query = data.get("message")
-            reply = text_generation(query)
-            # reply="processinggggggggggg"
+            # reply = text_generation(query)
+            reply="processinggggggggggg"
             
             chat = Chat(user=request.user, message=query, response=reply, created_at=timezone.now())
             chat.save()

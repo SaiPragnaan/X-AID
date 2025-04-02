@@ -40,27 +40,22 @@
         </div>
     </form>
 </div> -->
-<div class="form-preview-container">
-    <!-- Image Preview Container -->
-    <div class="image-preview" id="image-preview"></div>
-
-    <!-- Message Form -->
-    <form class="message-form">
-        {% csrf_token %}
-        <div class="input-group">
-            <label for="image-upload" class="upload-icon">
-                <i class="fa-solid fa-image"></i>
-            </label>
-            <input type="file" id="image-upload" class="image-input" accept="image/*" hidden />
-            <input type="text" class="input-query" placeholder="Ask Anything or Upload an X-Ray" />
-            <button type="submit" class="submit-query-button">
-                <i class="fa-solid fa-arrow-up send-img" alt="send"></i>
-            </button>
-        </div>
-    </form>
-</div>
-
-
+<form class="message-form">
+    {% csrf_token %}
+    <div class="image-preview" id="image-preview">
+        <img id="preview-img" src="" alt="Preview" />
+    </div>
+    <div class="input-group">
+        <label for="image-upload" class="upload-icon">
+            <i class="fa-solid fa-image"></i>
+        </label>
+        <input type="file" id="image-upload" class="image-input" accept="image/*" hidden />
+        <input type="text" class="input-query" placeholder="Ask Anything or Upload an X-Ray" />
+        <button type="submit" class="submit-query-button">
+            <i class="fa-solid fa-arrow-up send-img"></i>
+        </button>
+    </div>
+</form>
 
 {% endblock %} {% block scripts %}
 <script src="{% static 'js/chatbot.js' %}"></script>
