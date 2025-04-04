@@ -3,6 +3,7 @@ django
 langchain
 langchain_google_genai
 langchain_pinecone
+langchain-community
 
 python-dotenv
 
