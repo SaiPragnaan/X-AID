@@ -1,5 +1,5 @@
 import torchvision
-from torchvision.models import mobilenet_v3_large
+from torchvision.models import resnet152,mobilenet_v3_large
 import os
 import torch
 import torch.nn as nn
@@ -15,8 +15,27 @@ classifier=nn.Sequential(
     nn.Linear(in_features=8,out_features=2),
 ).to('cpu')
 
+# resnet_classifier=nn.Sequential(
+#     nn.Dropout(p=0.2,inplace=True),
+#     nn.Linear(in_features=2048,out_features=1024),
+#     nn.Linear(in_features=1024,out_features=256),
+#     nn.Dropout(p=0.2,inplace=True),
+#     nn.Linear(in_features=256,out_features=128),
+#     nn.Linear(in_features=128,out_features=64),
+#     nn.Dropout(p=0.2,inplace=True),
+#     nn.Linear(in_features=64,out_features=8),
+#     nn.Linear(in_features=8,out_features=2),
+# ).to('cpu')
+
 MODEL_PATH = os.path.join(os.path.dirname(__file__), "..", "models", "mobilenetv3_model.pth")
+
+
+if not os.path.exists(MODEL_PATH):
+    raise FileNotFoundError(f"Model file not found: {MODEL_PATH}")
+
 model = mobilenet_v3_large(weights=None) 
+# model = resnet152(weights=None) 
+# model.fc=resnet_classifier
 model.classifier=classifier
 model.load_state_dict(torch.load(MODEL_PATH, map_location=torch.device('cpu')))
 
