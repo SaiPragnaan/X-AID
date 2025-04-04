@@ -1,0 +1,17 @@
+django
+
+langchain
+langchain_google_genai
+langchain_pinecone
+
+python-dotenv
+
+PyPDF2
+
+torch==2.2.1
+torchvision==0.17.1
+
+django-environ  
+whitenoise 
+
+-e .

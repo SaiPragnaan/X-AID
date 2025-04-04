@@ -3,6 +3,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
 from .models import Chat
+from PIL import Image
 import json
 import os
 
@@ -11,6 +12,7 @@ sys.path.append('/home/unique/Dev/X-AID/ML/')
 
 
 from scripts.chat_generation import text_generation
+from scripts.image_prediction import predict
 
 from django.utils import timezone
 # Create your views here.
@@ -20,10 +22,11 @@ def chatbot(request):
     if request.method=="POST":
         if request.FILES.get("image"):
             image = request.FILES["image"]
-
-            bot_reply = "I received your image. Processing..."
+            img = Image.open(image)
+            print("hi got your image ,now sending it ahead")
+            bot_reply = predict(img)
             bot_image = None  
-
+            # print(bot_reply)
             chat = Chat(user=request.user, image=image,response=bot_reply ,bot_image=bot_image,created_at=timezone.now())
             chat.save()
             return JsonResponse({
@@ -34,8 +37,8 @@ def chatbot(request):
         elif request.body:
             data = json.loads(request.body)
             query = data.get("message")
-            # reply = text_generation(query)
-            reply="processinggggggggggg"
+            reply = text_generation(query)
+            # reply="processinggggggggggg"
             
             chat = Chat(user=request.user, message=query, response=reply, created_at=timezone.now())
             chat.save()
@@ -76,16 +79,16 @@ def register(request):
                 user=User.objects.create_user(username=username, email=email,password=password1)
                 user.save()
                 auth.login(request,user)
-                return redirect('chatbot')
+                return redirect('/chatbot/')
             except:
                 error_message="Error Creating account"
-                return render(request,'register.html',{'error_message':error_message})
+                return render(request,'chatbot_app/register.html',{'error_message':error_message})
         else:
             error_message="Passwords don't match"
-            return render(request,'register.html',{'error_message':error_message})
+            return render(request,'chatbot_app/register.html',{'error_message':error_message})
 
-    return render(request,'chatbot_app/register.html')
+    return render(request,"chatbot_app/register.html",{})
 
 def logout(request):
     auth.logout(request)
-    return redirect("chatbot/")
+    return redirect("/login/")

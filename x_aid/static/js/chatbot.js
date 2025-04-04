@@ -87,8 +87,10 @@ const sendImageToServer = async (file) => {
     const formData = new FormData();
     formData.append("image", file);
     formData.append("csrfmiddlewaretoken", document.querySelector("[name=csrfmiddlewaretoken]").value);
-
+    console.log("got your image buddy..")
     let response = await fetch("/chatbot/", { method: "POST", body: formData });
+    console.log("got the response buddy..")
+
     let replyData = await response.json();
     if (replyData.bot_reply) appendBotMessage(replyData.bot_reply);
     if (replyData.bot_image) appendBotImage(replyData.bot_image);
