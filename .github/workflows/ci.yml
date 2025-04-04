@@ -30,9 +30,14 @@ jobs:
       - name: Run Migrations
         shell: bash -l {0}
         run: |
+          conda activate myenv
+          cd x_aid 
           python manage.py migrate
 
       - name: Run Tests
         shell: bash -l {0}
         run: |
+          conda activate myenv
+          cd x_aid
           python manage.py test chatbot_app
+
