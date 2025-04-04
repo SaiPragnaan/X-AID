@@ -8,7 +8,8 @@ import json
 import os
 
 import sys
-sys.path.append('/home/unique/Dev/X-AID/ML/')
+sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'ML'))
+
 
 
 from scripts.chat_generation import text_generation
